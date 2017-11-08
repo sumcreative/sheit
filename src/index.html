@@ -2,18 +2,20 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <title>Ionic App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>쉬잇</title>
+  <!--<meta http-equiv="Content-Security-Policy" content="img-src * blob: android-webview-video-poster: cdvphotolibrary:  'self' data: ws: wss://*; default-src * blob: 'self' gap: wss: ws: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src * http: https: ws: wss://*;">-->
+  <meta name="viewport" content="viewport-fit=cover,width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4e8ef7">
+  <meta name="theme-color" content="#3b4254">
 
   <!-- cordova.js required for cordova apps -->
+  
   <script src="cordova.js"></script>
-
+  
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
@@ -32,10 +34,16 @@
   <ion-app></ion-app>
 
   <!-- The polyfills js is generated during the build process -->
+
   <script src="build/polyfills.js"></script>
   <script src="build/vendor.js"></script>
   <!-- The bundle js is generated during the build process -->
+
   <script src="build/main.js"></script>
+  <script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b04a6d1d4d40c00b53d77f18334aa1be&libraries=services,clusterer"></script>
+  <!--<script src="assets/libs/moment/moment.js" ></script>
+  <script src="assets/libs/moment/ko.js" ></script>-->
+
 
 </body>
 </html>

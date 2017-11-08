@@ -1,0 +1,200 @@
+page-mypage-user-leave {
+ ion-content {
+        margin: 0px;
+        padding: 0px;
+        font-size: 12px;
+        line-height: 18px;  
+        max-width: 100%;
+    }
+
+    .content {
+        background: #fff;
+    }
+    .scroll-content {
+        margin-bottom:0;
+    }
+
+    .popup_btn{
+        width: 100%;
+        background: $default-color;
+        padding: 8px 0;
+        font-size: 12px;
+        height: 30px;
+    }
+    .popup_btn p{
+        margin:0;
+        width: 50%;
+        float: left;
+        text-align: center;
+        color:#ffffff;
+        font-size: 12px;
+    }
+    p{
+        color:#555555;
+        margin:0;
+        line-height:130%;
+        margin:0 15px;
+    }
+    a {
+        color: #575757;
+        text-decoration: none;
+        outline: none;
+    }
+    h1{
+        text-align: left;
+        font-size: 15px;
+        padding:0 15px;
+    }
+    h2{
+        font-size:13px;
+        margin:15px 15px 8px 15px;
+        font-weight: bold;
+    }
+    a:hover, a:focus {
+        color: #7d7d7d;
+        text-decoration: none;
+        outline: none;
+    }
+    .main_color_btn{
+        color: #FFFFFF;
+        background: $default-color;
+        border: 0px;
+        text-align: center;
+        padding: 15px 0;
+        width:100%
+    }
+    .main_color_text{
+        color:$default-color;
+    }
+    .agreebtn{
+        text-align: center;
+        padding:0 15px 15px 15px;
+        border-bottom:1px solid #ddd;
+    }
+    .center{
+        text-align: left;
+        padding:0 15px;
+    }
+    .gray_box{
+        background:#f0f0f0;
+        margin:5px 0 0 0;
+        padding: 5px 15px;
+    }
+    .margin_and_border{
+        padding:13px 15px;
+        margin:0;
+        border-bottom:1px #ddd solid;
+    }
+    .margin_and_border button{
+        text-size:12px;
+    }
+    .back_main{
+        background:$default-color;
+        color:#ffffff;
+        border:0;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    .delete-btn{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding:0;
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background:#ffffff;
+        margin-bottom: 48px;
+    }
+        th, td {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 5px 15px;
+        }
+        td{
+            font-size:10px;
+            height: 20px;
+        }
+        .lable{
+            width: 100px;
+        }
+        .form-control{
+            width:100%;
+            border:0px;
+            padding:5px 0;
+            font-size:10px;
+        }
+    .checkbox[type=checkbox], .checkbox[type=radio] {display:none;}
+    label.input-label { 
+    display: inline-block;
+    cursor: pointer;
+    }
+    label.input-label::before {
+        float:right;
+        vertical-align: -3px;
+        display: inline-block;
+        margin:0 20px ;
+        font-family: FontAwesome;
+        font-size: 20px;
+        color:#fff1f9;
+    }
+    label.first::before{
+        margin:0 0 0 8px;
+    }
+    label.input-label.checkbox::before {
+        content: "\f0c8";
+    }
+    label.input-label.radio::before {
+         content: "\f0c8";
+    }
+
+    input.checkbox:checked + label.input-label::before {
+        display: inline-block; 
+        font-family: FontAwesome; 
+        color:$default-color;
+    }
+    input.checkbox:checked + label.input-label.checkbox::before {
+        content:"\f14a";
+    }
+    input.checkbox:checked + label.input-label.radio::before {
+        content:"\f14a";
+    }
+    input[type=checkbox]
+    {
+        -webkit-appearance: radio;
+    }
+    #mark {
+         position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: .01;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 0.5;
+        z-index: 999;
+    }
+    .alert_form{
+        position:fixed;
+        top:50%;
+        left:50%;
+        margin-top: -48px;
+        margin-left:-154px;
+        font: 16px/2em Lato, serif;
+        width: 300px;
+        z-index: 9999;
+        display: none;
+        color: #5d5d5d;
+        background: #ffffff;
+        padding: 12px 20px 20px 20px;
+        border-radius: 3px;
+        font-family:NanumGothic,'나눔고딕',ng,sans-serif;
+    }
+}

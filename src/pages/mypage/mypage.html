@@ -1,0 +1,61 @@
+<ion-header>  
+        <ion-navbar>
+        <ion-title  class="detail-title">설정</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+        <ion-list>
+            <ion-item style="border-bottom: 1px solid #dedede;">
+                <h2>{{userApi.user.member.nickname}}</h2>
+                <h3>{{userApi.user.email}}</h3>
+                <button ion-button color="primary" default item-right style="height: 35px;font-size: 12px;margin: 7px 0;font-size:12px;" (click)="logout()">로그아웃</button>
+            </ion-item>
+            <ion-item  (click)="goMenu(5)">
+                <ion-label>정보수정</ion-label>
+            </ion-item>
+            <ion-item-group>
+            <ion-item (click)="goMenu(1)">
+                <ion-label>찜 목록</ion-label>
+                <ion-note  item-right *ngIf="userApi.user.wishCount > 0">{{userApi.user.wishCount}}</ion-note>
+            </ion-item>
+            <!--<ion-item  (click)="goMenu(2)">
+                <ion-label>내 게시물 보기</ion-label>
+                <ion-note  item-right *ngIf="userApi.user.boardCount > 0">{{userApi.user.boardCount}}</ion-note>
+            </ion-item>-->
+            </ion-item-group>
+            <!--<ion-item  (click)="goMenu(3)">
+                <ion-label>운영자 쪽지</ion-label>
+            </ion-item>-->
+              <ion-item  (click)="goMenu(4)">
+                <ion-label>친구초대</ion-label>
+            </ion-item>
+            <ion-item-group>
+            <ion-item-divider>알림</ion-item-divider>
+              <ion-item>
+                <ion-label>알람 수신동의</ion-label>
+                <ion-toggle item-right [(ngModel)]="alarmState" (ionChange)="alarmChange('P')"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>EMAIL 수신동의</ion-label>
+                <ion-toggle [(ngModel)]="emailAgree"  (ionChange)="alarmChange('E')"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>SMS 수신동의</ion-label>
+                <ion-toggle [(ngModel)]="smsAgree"  (ionChange)="alarmChange('S')"></ion-toggle>
+            </ion-item>
+            <ion-item-divider>약관</ion-item-divider>
+              <ion-item (click)="goMenu(7)">
+                <ion-label>이용약관</ion-label>
+            </ion-item>
+            <ion-item style="border-bottom: 1px solid #dedede;" (click)="goMenu(8)">
+                <ion-label>개인정보 취급방침</ion-label>
+            </ion-item>
+            </ion-item-group>
+            <ion-item   (click)="goMenu(6)">
+                <ion-label>회원탈퇴</ion-label>
+            </ion-item>
+        </ion-list>
+    
+</ion-content>

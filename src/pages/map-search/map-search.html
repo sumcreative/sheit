@@ -1,0 +1,99 @@
+<ion-header no-shadow>
+  <ion-toolbar   style="background: #3b4254;">
+            <ion-title> 
+              <span  class="col2" col-2 style="font-size: 1.9rem;float:left;text-align: center;line-height: 4.6rem;" (click)="closeSearch()">닫기</span>
+                <div col-10 class="col10 searchbar-input-container" style="background: inherit;width:100%; padding-right:3%;float:right">
+                    <ion-icon name="ios-close-circle" class="searchClear" (click)="searchClear()"></ion-icon>
+                    <ion-input #searchInput class="search-bar-input"  type="search"  [(ngModel)]="searchQuery"   (keyup)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+                </div>
+            </ion-title>
+
+    </ion-toolbar>
+<!--<ion-toolbar style="background: #3b4254;padding:0;">
+        <ion-input #searchInput class="search-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+        <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only color="white" (click)="closeSearch()">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>-->
+    <ion-segment [(ngModel)]="type" mode="md">
+        <ion-segment-button value="tag">
+            태그
+        </ion-segment-button>
+        <ion-segment-button value="subway">
+            지하철
+        </ion-segment-button>
+        <ion-segment-button value="place">
+            지역
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+
+<ion-content>
+      <img src="assets/img/search_test.png" style="position: absolute;z-index: 999;top: -122px;opacity: 0.4;display:none;"/>
+      <ng-template [ngIf]="type=='place'">
+            <ng-template [ngIf]="areaList.length == 0 && searchArea.length > 0">
+                  <ion-list no-lines>
+                    <ion-list-header style="border-bottom: 1px solid #ededed;border-top: 1px solid #ededed;">
+                        <span *ngIf="type=='place'" style="line-height:3.4rem">최근 검색한 지역</span>
+                        <span item-end style="margin:9px 13px 9px 0" (click)="removeSearch()">전체삭제</span>
+                    </ion-list-header>
+                    <ion-item *ngFor="let area of searchArea" (click)="goMap(area)">
+                        <span>{{area.sw_name}}</span>
+                    </ion-item>
+                </ion-list>
+            </ng-template>
+            <ng-template [ngIf]="areaList.length > 0 ">
+                <ion-list no-lines>
+                    <ion-item *ngFor="let area of areaList" (click)="goMap(area)">
+                        <span>{{area.sw_name}}</span>
+                    </ion-item>
+                </ion-list>
+            </ng-template>
+      </ng-template>
+       <ng-template [ngIf]="type=='subway'">
+            <ng-template [ngIf]="subwayList.length == 0 && searchSubway.length > 0">
+                  <ion-list no-lines>
+                    <ion-list-header style="border-bottom: 1px solid #ededed;border-top: 1px solid #ededed;">
+                        <span style="line-height:3.4rem">최근 검색한 지하철</span>
+                        <span item-end style="margin:9px 13px 9px 0" (click)="removeSearch()">전체삭제</span>
+                    </ion-list-header>
+                     <ion-item *ngFor="let subway of searchSubway" (click)="goMap(subway)">
+                         <span>{{subway.sw_name}}</span>
+                        <ion-badge *ngFor="let line of subway.lineColor; let i=index" item-end style="margin: 9px 5px 9px 0;padding-left: 3px;padding-right: 3px;" [style.background]="line">{{subway.lineName[i]}}</ion-badge>
+                     </ion-item>
+                </ion-list>
+            </ng-template>
+            <ng-template [ngIf]="subwayList.length > 0">
+                <ion-list no-lines>
+                    <ion-item *ngFor="let subway of subwayList" (click)="goMap(subway)">
+                        <span>{{subway.sw_name}}</span>
+                        <ion-badge *ngFor="let line of subway.lineColor; let i=index" item-end style="margin: 9px 5px 9px 0;padding-left: 3px;padding-right: 3px;" [style.background]="line">{{subway.lineName[i]}}</ion-badge>
+                    </ion-item>
+                </ion-list>
+            </ng-template>
+      </ng-template>
+       <ng-template [ngIf]="type=='tag'">
+            <ng-template [ngIf]="tagList.length == 0 && searchTag.length > 0">
+                  <ion-list no-lines>
+                    <ion-list-header style="border-bottom: 1px solid #ededed;border-top: 1px solid #ededed;">
+                        <span  style="line-height:3.4rem">최근 검색한 태그</span>
+                        <span item-end style="margin:9px 13px 9px 0"  (click)="removeSearch()">전체삭제</span>
+                    </ion-list-header>
+                    <ion-item *ngFor="let tag of searchTag" (click)="goMap(tag)">
+                        <span>{{tag}}</span>
+                    </ion-item>
+                </ion-list>
+            </ng-template>
+            <ng-template [ngIf]="tagList.length > 0">
+                <ion-list no-lines>
+                  <ion-item *ngFor="let tag of tagList" (click)="goMap(tag.tag_name)">
+                        <span>{{tag.tag_name}}</span>
+                    </ion-item>
+                </ion-list>
+            </ng-template>
+      </ng-template>
+</ion-content>
+

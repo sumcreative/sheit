@@ -1,0 +1,214 @@
+<ion-header #header style="display:none;">  
+      <ion-toolbar   style="background: #3b4254;">
+            <ion-title> 
+                <img class="logo_img" src="assets/img/logo2.png" style="width:12%;margin-top: 9px;"/>
+                <div col-11 class="col10 searchbar-input-container" style="background: inherit;width:100%; margin-right:3%;float:right">
+                    <ion-icon name="ios-close-circle" class="searchClear" (click)="searchClear()"></ion-icon>
+                    <ion-input #searchInput class="search-bar-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+                </div>
+            </ion-title>
+
+    </ion-toolbar>
+    <!--<ion-toolbar   style="background: #3b4254;">
+            <ion-title> <img src="assets/img/logo.png" style="width:16%;margin-top: 2%;"/></ion-title>
+            <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only  color="white" (click)="openSearch()">
+                    <ion-icon name="ios-search"></ion-icon>
+                </button>
+                <button   ion-button icon-only color="white" (click)="openMenu()">
+                    <img src="assets/img/sidemenu.png" style="width:22px; " />
+                </button>
+ 
+            </ion-buttons>
+    </ion-toolbar>-->
+</ion-header>
+<!--<ion-header [hidden]="headerHidden">
+    <ion-toolbar style="position:absolute; top:12px; left:0; ">
+          <ion-title style="padding: 0px 16px;font-size: 2.5rem;"> 쉬잇</ion-title>
+          <ion-buttons  style="z-index: 99999;" end>
+            <button ion-button menuToggle icon-only color="white">
+                <img src="assets/img/sidemenu.png" style="width:25px; " />
+            </button>
+          </ion-buttons>
+     </ion-toolbar>
+</ion-header>-->
+<ion-content  (ionScroll)="scrollHandler($event)" has-bouncing="false">
+    <!--<ion-refresher #refresher (ionRefresh)="doRefresh($event)" >
+         <ion-refresher-content
+            pullingIcon="md-refresh-circle"
+            refreshingSpinner="md-refresh-circle"></ion-refresher-content>
+    </ion-refresher>-->
+    <!--<ion-list>-->
+        <div>
+    <div class="main" style="width:100%;height:250px;position:relative;    margin-bottom: 4px;">
+         <ion-toolbar style="position:absolute; top:11px; left:0;background: transparent;">
+            <ion-title> <img src="assets/img/logo.png" style="width:16%;margin-top: 3%;"/></ion-title>
+            <ion-buttons  style="z-index: 99999;" class="menu_btn" end>
+                <button ion-button menuToggle icon-only color="white" style="margin:0">
+                    <img src="assets/img/sidemenu.png" style="width:22px; " />
+                </button>
+            </ion-buttons>
+        </ion-toolbar>
+        <!--<img  src="assets/img/background.png"style="filter:brightness(40%); width:100%;height:100%" />-->
+        <img  src="assets/img/background.png"style="width:100%;height:100%" />
+        <div class="category_div" style="width:100%;">
+              <ng-template ngFor  let-category [ngForOf]="categorys"  let-i="index">
+                    <button class="category_icon" outline round ion-button color="white" (click)="goHashtag(category.menuName)">#{{category.menuName}}</button>
+              </ng-template>
+          </div>
+          <div class="search-input-container">
+            <ion-input #searchInput class="search-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="searchByKeyword()"></ion-input>
+            <ion-icon name="ios-search" class="ionSearch" (click)="goSearch()"></ion-icon>
+        </div>
+        <!--<ion-slides style="height:auto;" *ngIf="bannerList.length" #bannerSlide  effect="fade"  initialSlide='0' loop='true' autoplay="2000" (ionSlideWillChange)="bannerSlideChange()" (ionSlideTap)="slideClick()">
+                <ion-slide *ngFor="let banner of bannerList"  >
+                    <img  src="http://sumcrimage.cafe24.com{{banner.banner.thumbnail}}"style="filter:brightness(40%)" />
+                </ion-slide>
+        </ion-slides>-->
+    </div>
+    <div style="display: table;width: 100%;border-bottom:4px solid #ededed;text-align:center">
+        <!--<img src="assets/img/middle.png" width="100%" style="position:absolute;left:0">-->
+        <div col-4 class="col4" id="myPosition" style="float:left" (click)="goMap(1)">
+            <img src="assets/img/icon1.png" style="display: block;margin: 15% auto 2px;width: 45px;"/>
+            <span style="font-weight:bold;font-size:1rem">내 주변 찾기</span>
+        </div>
+        <div col-4 class="col4" id="subway" style="float:left;padding-bottom: 18px;" (click)="goMap(2)">
+            <img src="assets/img/icon2.png" style="display: block;margin: 15% auto 4px;width: 45px;"/>
+            <span style="font-weight:bold;font-size:1rem">지하철역으로 찾기</span>
+        </div>
+        <div col-4 class="col4" style="float:left" (click)="goMap(3)">
+            <img src="assets/img/icon3.png" style="display: block;margin: 15% auto 4px;width: 45px;"/>
+            <span style="font-weight:bold;font-size:1rem">지역으로 찾기</span>
+        </div>
+    </div>
+    <div style="display:grid;background:#ededed;">
+        <ion-slides style="height:auto;" effect="fade"  initialSlide='0'>
+                <ion-slide *ngFor="let banner of bannerList">
+                        <img src="http://sumcrimage.cafe24.com/{{banner.thumbnail}}" width="100%" (click)="goBanner(banner)"/>
+                </ion-slide>
+        </ion-slides>
+    </div>
+    <!--<div class="list-title"  style="margin-top: 1.9rem;"> 나를 위한 추천 콘텐츠</div>
+    <div style="margin-bottom: 17px;display: inline-block;width: 100%;">
+    <ion-scroll id="bannerScroll" scroll-bar-x="false" scroll-bar-y="false"  scrollX scrollY="false" style="height:20rem;background: #fff;">
+        <ng-template ngFor let-item [ngForOf]="brands" let-lst="last">
+            <div class="scroll-item" *ngIf="item.logo_url">
+                <div  (click)="openItem(item)">
+                    <img *ngIf="item.logo_url"  src="http://sumcrimage.cafe24.com{{item.logo_url}}" style="width:14rem; height:14rem;border-radius: 6px;object-fit:cover;"> 
+                    <div style="position:relative">
+                        <ion-card-title style="padding: 0;margin: 9px 0 0 0;font-size: 1rem;font-weight: bold;">
+                            {{item.brandName}}
+                        </ion-card-title>
+                        <span class="area_text" style="font-size:1rem">{{item.areaName}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ion-scroll>
+    </div>-->
+   
+
+    <div class="list-title" style="margin-top: 1.9rem;"> 이달의 신규 업체</div>
+    <div style="margin-bottom: 17px;display: inline-block;width: 100%;">
+    <ion-scroll id="bannerScroll" scroll-bar-x="false" scroll-bar-y="false"  scrollX scrollY="false" style="height:18rem;background: #fff;">
+        <ng-template ngFor let-item [ngForOf]="brands">
+            <div class="scroll-item" *ngIf="item.logo_url">
+                <div  style="position:relative;" (click)="openItem(item)" class="thumbnail">
+                    <img *ngIf="item.logo_url" class="thumbnail"  src="http://sumcrimage.cafe24.com{{item.logo_url}}" style="width:31.2rem;border-radius: 6px;object-fit:cover;    display: block;"> 
+                    <div style="position: absolute;top: 68%;left: 5%;">
+                        <ion-card-title style="padding: 0;font-size: 1.2rem;font-weight: bold; color:#fff;">
+                            {{item.brandName}}
+                        </ion-card-title>
+                        <span class="area_text" style="font-size:1rem;color:#fff">{{item.areaName}}  <span class="info_text" style="font-size:1rem;color:#fff">{{item.hashtag}}</span></span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ion-scroll>
+    </div>
+
+    <div class="list-title"> 기획전</div>
+    <div style="margin-bottom: 17px;display: inline-block;width: 100%;">
+        <ion-scroll id="bannerScroll" scroll-bar-x="false" scroll-bar-y="false"  scrollX scrollY="false" style="height:18rem;background: #fff;">
+            <ng-template ngFor let-item [ngForOf]="products">
+                <div class="scroll-item" *ngIf="item.imageUrl">
+                    <div  style="position:relative;" (click)="openEvent(item)"  class="thumbnail">
+                        <img *ngIf="item.imageUrl" [src]="item.imageUrl" style="width:31.2rem;border-radius: 6px;object-fit:cover;display: block;"> 
+                        <div style="position: absolute;top: 68%;left: 5%;">
+                            <ion-card-title style="padding: 0;font-size: 1.2rem;font-weight: bold; color:#fff;">
+                                {{item.prodName}}
+                            </ion-card-title>
+                            <span class="area_text" style="font-size:1rem;color:#fff">{{item.prodDesc}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ion-scroll>
+    </div>
+    <!--<ion-slides style="height:auto;margin:8px 0 40px 0;" #brandSlide  effect="slide"  initialSlide='1' loop='false' spaceBetween="8" slidesPerView="1.9" centeredSlides="true" >
+         <ng-template ngFor let-item [ngForOf]="brands">
+             <ion-slide *ngIf="item.logo_url"  >
+                    <div style="border:solid 1px #ccc; background:#fff;" (click)="openItem(item)">
+                        <img *ngIf="item.logo_url"  src="http://sumcrimage.cafe24.com{{item.logo_url}}" style="width:100%;"> 
+                        <div style="position:relative">
+                            <ion-card-title style="padding: 0;margin: 2px 0 0 4px;font-size: 1.6rem;font-weight: bold;text-align:left;">
+                                {{item.brandName}}
+                            </ion-card-title>
+                            <span class="area_text">
+                            {{item.areaName}} <span class="info_text">{{item.hashtag}}</span>
+                            </span>
+                        </div>
+                    </div>
+             </ion-slide>
+         </ng-template>
+    </ion-slides>-->
+
+    <!--<div style="position:relative;">
+    <ion-slides style="height:auto;margin-bottom:8px;" *ngIf="videos.length" #videoSlide  effect="slide"  initialSlide='0' loop='true'  (ionSlideWillChange)="videoSlideChange()" (ionSlideTap)="videoClick()">
+            <ng-template ngFor let-video [ngForOf]="videos">
+
+                <ion-slide *ngIf="video.thumbUrl"  >
+                    <ion-card class="background-card">
+                            <img  src="http://sumcrimage.cafe24.com{{video.thumbUrl}}" style="width:100%;filter:brightness(40%)" />
+                            <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;">
+                                    <div  class="background-card-subtitle">
+                                        <pre style="padding: 0;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">{{video.prodDesc}}</pre>
+                                    </div>
+                            </div>
+                            <div  class="background-card-title">
+                                <span style="border-bottom: 1px solid;padding-bottom: 2px;">{{video.prodName}}</span>
+                            </div>
+                    </ion-card>
+                </ion-slide>
+            </ng-template>
+    </ion-slides>
+    <button ion-botton clear icon-only class="left_arrow">
+                    <ion-icon name="ios-arrow-back"></ion-icon>
+    </button>
+    <button ion-botton clear icon-only class="right_arrow">
+                    <ion-icon name="ios-arrow-forward"></ion-icon>
+    </button>
+    </div>-->
+    
+    <!--</ion-list>-->
+    <footer style="padding-top:8px;padding-bottom:4px;background:#ededed">
+        <div style=" font-size:10px; margin:0 8px;border-bottom:1px solid #f0f0f0">
+            <p style="margin:0 0 8px 0; line-height:13px;text-align:center">
+                <span style="font-weight:bold;font-size:1.5rem;">쉬잇</span><br>
+                <span (click)="rule(0)">이용약관 | </span><span (click)="rule(1)">개인정보 처리방침 | </span><span (click)="rule(2)">사업자 정보확인</span><br>
+                <span>(주)숨크리에이티브 사업자 및 통신판매업자 정보</span>
+            </p>
+        </div>
+        <div style=" font-size:10px; padding:8px;">
+            <p style="line-height:13px; margin: 0;text-align:center">
+            주식회사 숨크리에이티브 | 대표: 채경민 <br>
+            사업자등록번호: 484-88-00453 | 통신판매 신고번호: 2016-서울금천-1048<br>
+            주소: 서울특별시 금천구 가산디지털1로 149 | 070-7703-0859<br>
+            sumcreative@naver.com
+            <!--<br>-->
+            <!--Copyright ©발그레-주식회사 숨크리에이티브 2016. All Rights Reserved.-->
+            </p>
+        </div>
+    </footer>
+        </div>
+</ion-content>

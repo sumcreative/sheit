@@ -1,0 +1,9 @@
+page-photoviewer {
+    .scroll-content {
+        background-color: rgba(0,0,0,0.9) !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: color($colors, primary);
+    }
+}

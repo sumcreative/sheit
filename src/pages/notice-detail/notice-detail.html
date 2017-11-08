@@ -1,0 +1,10 @@
+<ion-header>  
+    <ion-navbar style="background: #3b4254;">
+        <ion-title class="detail-title">{{notice.subject}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content  overflow-scroll="true"  no-bounce has-tabs="true" start-y="100" has-header="true">
+    <div [innerHTML]="content">
+    </div>
+</ion-content>

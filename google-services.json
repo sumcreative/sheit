@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "410681357502",
+    "firebase_url": "https://sheit-ee91b.firebaseio.com",
+    "project_id": "sheit-ee91b",
+    "storage_bucket": "sheit-ee91b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410681357502:android:3ae70128baa656c7",
+        "android_client_info": {
+          "package_name": "com.sumcreative.sheit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410681357502-8o2p2erf9r8c8qg3utqa4gl8694j33ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOhe1vCNVnEG7Lls3I59mCR3k0oMGv3CM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<ion-header>
+      <ion-toolbar   style="background: #3b4254;">
+            <ion-title> 
+              <span class="col2" col-2 style="font-size: 1.9rem;float:left;text-align: center;line-height: 4.6rem;" (click)="closeSearch()">닫기</span>
+                <div col-10 class="col10 searchbar-input-container" style="background: inherit;width:100%; padding-right:3%;float:right">
+                    <ion-icon name="ios-close-circle" class="searchClear" (click)="searchClear()"></ion-icon>
+                    <ion-input #searchInput class="search-bar-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+                </div>
+            </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-template [ngIf]="viewTemplate == 2">
+        <ion-card *ngFor="let item of datas" style="position:relative;box-shadow:none;margin:0;width:100%;margin:8px 0;border-bottom: 1px solid #ebebeb;" (click)="goDetail(item)">
+                    <img *ngIf="item.image" class="thumbnail"  src="http://sumcrimage.cafe24.com{{item.image}}" style="width:100%;object-fit:cover;    display: block;"> 
+                    <div style="position: absolute;bottom: 5%;left: 5%;">
+                        <ion-card-title style="padding: 0;font-size: 1.2rem;font-weight: bold; color:#fff;">
+                            {{item.title}}
+                        </ion-card-title>
+                        <span class="area_text" style="color:#fff">{{item.area}}  <span class="info_text" style="color:#fff">{{item.hashtag}}</span></span>
+                    </div>
+                
+            </ion-card>
+        
+    </ng-template>
+    <ng-template [ngIf]="viewTemplate == 3">
+      <!-- CARD - BACKGROUND -->
+        <!--<ion-card class="background-card" *ngFor="let item of datas" (click)="goDetail(item)">-->
+          <div style="margin-top:8px">
+                <img *ngFor="let item of datas" src="http://sumcrimage.cafe24.com{{item.image}}" style="width:100%;"  (click)="goDetail(item) ">
+          </div>
+        <!--</ion-card>-->
+    </ng-template>
+</ion-content>

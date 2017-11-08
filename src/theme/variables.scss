@@ -25,14 +25,21 @@ $background-color:  #fff;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #3b4254,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #444,
+  price: #947bff,
+  white: #ffffff,
+  subtitle: #777777,
+  map:#704de4
 );
 
+$default-color:#ff83fe;
 
+// $refresher-height: 0px;
+$refresher-icon-color:#ff83fe;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

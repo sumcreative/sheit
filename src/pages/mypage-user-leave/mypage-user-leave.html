@@ -1,0 +1,55 @@
+<div id="mark" (click)="alertClose()">
+
+</div>
+<div id="find_add" class="alert_form">
+    <div>
+        <p style="text-align:center;font-size:12px; margin: 0 0 10px 0;">정말 탈퇴 하시겠습니까?</p>
+    </div>
+    <div class="popup_btn">
+        <p id="popup_close" style="margin-left: -2px;float:left;border-rigth:1px solid #ffffff;" (click)="alertAction(0)">취소</p>
+        <p id="popup_ok"  style="border-left: 1px solid #ffffff;" (click)="alertAction(1)">확인</p>
+    </div>
+</div>
+<ion-header>
+    <ion-navbar>
+        <ion-title  class="detail-title">회원 탈퇴</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div id="scroll-wrapper">
+	    <div class="gray_box center">
+            <div style="margin-bottom: -4px;">
+			    <span class="main_color_text">고객센터:</span>
+			    <span>070.7703.0859</span><br>
+            </div>
+            <div>
+			    <span class="main_color_text">메일문의:</span>
+			    <span>sumcreative@naver.com</span>
+            </div>
+	    </div>
+	    <div>
+		    <p class="main_color_text margin_and_border">탈퇴 전 유의사항을 확인해주세요</p>
+		    <h2 >회원탈퇴시 안내</h2>
+			<p>회원탈퇴 시 모든 정보가 삭제됩니다.</p>
+		    <h2>재가입 안내</h2>
+			<p class="main_color_text">회원 탈퇴 후, 동일한 회원정보로의 재가입은 6개월 이후 가능합니다.</p>
+            <div class="agreebtn" style="margin:20px 0 0 0">
+			    <input type="checkbox" class="checkbox" name="emailagree" id="check" [(ngModel)]="agree">
+			    <label for="check" class="input-label radio first"><span>위 모든 사항을 확인하였으며, </span><span class="main_color_text">동의합니다.</span></label>
+		    </div>
+	    </div>
+		<p class="margin_and_border back_main">탈퇴 사유를 적어주시면 운영에 참고 하겠습니다.</p>
+        <table class="table table-condensed">
+                <tr>
+                    <td>
+						<textarea name="contents" rows="10" class="form-control" name="reason" placeholder="내용" [(ngModel)]="reason"></textarea>
+                    </td>
+                </tr>
+		</table>
+    </div>
+</ion-content>
+<ion-footer style="background: #ff8fa7;">
+    <div  class="delete-btn" (click)="leaveSubmit()">
+        <p class="main_color_btn" style="margin: 0;">탈퇴하기</p>
+    </div>
+</ion-footer>

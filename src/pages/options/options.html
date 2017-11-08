@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar style="background: #3b4254;">
+    <!--<ion-buttons start>-->
+        <button ion-button icon-only color="white" style="float:left;color: #fff;background: transparent;box-shadow: none;"  (click)="dismiss()">
+            <ion-icon name="ios-arrow-back"></ion-icon>
+        </button>
+    <!--</ion-buttons>-->
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+      <div class="category_div" style="width:100%;">
+              <ng-template ngFor  let-category [ngForOf]="categorys"  let-i="index">
+                    <button class="category_icon" *ngIf="!category.checked" outline round ion-button color="primary" (click)="checkHashtag(category)">#{{category.menuName}}</button>
+                    <button class="category_icon" *ngIf="category.checked"  round ion-button color="primary" style="color:#fff" (click)="checkHashtag(category)">#{{category.menuName}}</button>
+              </ng-template>
+      </div>
+</ion-content>

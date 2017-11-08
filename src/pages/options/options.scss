@@ -1,0 +1,35 @@
+page-options {
+    .back-button {
+        color: #fff !important;
+    }
+    .scroll-content {
+        background: #fff  !important;
+    }
+
+     .category_div {
+          z-index: 9999;
+        // position: absolute;
+        // bottom: 0;
+        // left:  0;
+        text-align: left;
+        padding: 1.2rem 2rem;
+    }
+    .category_icon {
+        z-index: 9999;
+        // position: absolute;
+        // top: auto;
+        // left:  auto;
+        height:18px;
+        color:#3b4254;
+        padding:2%;
+        border-radius: 5px;
+        margin:0 0.2rem 0 0;
+    }
+
+    .toolbar-ios ion-title
+    {
+        padding-top:0  !important;
+        height: 100%  !important;
+        min-height: 100% !important;
+    }
+}

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar style="background: #3b4254;">
+        <ion-title class="detail-title">공지사항</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-refresher #refresher (ionRefresh)="doRefresh($event)">
+         <ion-refresher-content
+            pullingIcon="refresh"
+            refreshingSpinner="bubbles"></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+          <ion-item *ngFor="let n of notice" (click)="itemTapped(n)">
+              <h2>{{n.subject}}</h2>
+              <h3>조회수 {{n.viewcount}}</h3>
+              <p>작성일 {{n.regDate|dateformat: 'YYYY-MM-DD HH:mm:ss'}}</p>
+          </ion-item>
+        </ion-list>
+</ion-content>

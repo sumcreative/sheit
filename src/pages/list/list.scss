@@ -1,0 +1,115 @@
+page-list {
+    .scroll-content {
+        background: #fff !important;
+    }
+    .back-button {
+        color: #fff !important;
+        z-index: 9999;
+    }
+    .detail-title {
+        color:#fff;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+
+    // .search-input {
+    //     // padding: 6px 8px;
+    //     height: auto;
+    //     border-radius: 2px;
+    //     font-size: 1.6rem;
+    //     font-weight: 400;
+    //     line-height: 3rem;
+    //     background-color: transparent;
+    //     background-position: 8px center;
+    //      -webkit-box-shadow: none;
+    //     box-shadow: none;
+    //     float:left;
+    //     padding:0;
+    //     padding-left: 15px;
+    //     color: #fff;
+    // }
+
+
+    .info_area {
+        position: relative;
+        padding: 13px 15px 11px;
+        background-color: #fff;
+    }
+     .info_area .tit_space {
+        padding-bottom: 3px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 20px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+     .info_area .tags {
+        height: 20px;
+        font-size: 1.4rem;
+        color: #656565;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+     .info_area .tags .tag_area_name {
+        position: relative;
+        padding: 0;
+        margin-right: 5px;
+        font-weight: 500;
+        color: #000;
+    }
+    .info_area .tags>span {
+        height: 17px;
+        line-height: 19px;
+        margin-right: 5px;
+    }
+
+    .btn_area button .button-inner {
+        width:40px;font-size: 1.8rem;
+    }
+
+    // .info_area .tags .tag_area_name:after {
+    //     content: '';
+    //     position: absolute;
+    //     right: 0;
+    //     top: 50%;
+    //     height: 9px;
+    //     margin-top: -5px;
+    //     width: 1px;
+    //     background-color: #ccc;
+    // }
+    .toolbar-title {
+        color:#fff !important;
+        padding: 0 !important;
+        
+    }
+    .area_text {
+        text-align: left;
+        color: color($colors, dark);
+        padding: 0;
+        margin: 2px 0;
+        font-size: 1rem;
+        // font-weight: bold;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    .info_text {
+        color: color($colors, subtitle);
+        padding: 0;
+        margin: 0;
+        // font-size: 1rem;
+
+        font-weight: normal;
+    }
+}

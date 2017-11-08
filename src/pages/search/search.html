@@ -1,22 +1,82 @@
-<ion-header>
+<ion-header>  
+  <ion-toolbar   style="background: #3b4254;">
+            <ion-title> 
+              <span  class="col2" col-2 style="font-size: 1.9rem;float:left;text-align: center;line-height: 4.6rem;" (click)="closeSearch()">닫기</span>
+                <div col-10 class="col10 searchbar-input-container" style="background: inherit;width:100%; padding-right:3%;float:right">
+                    <ion-icon name="ios-close-circle" class="searchClear" (click)="searchClear()"></ion-icon>
+                    <ion-input #searchInput class="search-bar-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+                </div>
+            </ion-title>
 
-  <ion-navbar>
-    <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    </ion-toolbar>
+    <!--<ion-navbar style="background: #3b4254;" [hidden]="navHidden">
+            <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only  color="white" (click)="openSearch()">
+                    <ion-icon name="ios-search"></ion-icon>
+                </button>
+                <button   ion-button icon-only color="white" (click)="openMenu()">
+                    <ion-icon name="menu"></ion-icon>
+                </button>
 
+            </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar style="background: #3b4254;padding:0;" [hidden]="searchHidden">
+        <ion-input #searchInput class="search-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+        <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only  color="white" (click)="goSearch()">
+                    <ion-icon name="ios-search"></ion-icon>
+                </button>
+                <button   ion-button icon-only color="white" (click)="closeSearch()">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>-->
 </ion-header>
-
-
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
-  <ion-list>
-    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-      <ion-avatar item-start>
-        <img [src]="item.profilePic" />
-      </ion-avatar>
-      <h2>{{item.name}}</h2>
-      <p>{{item.about}}</p>
-      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-    </button>
-  </ion-list>
+    <div class="inner_width">
+			<div class="center_wrap">
+				<div class="center">
+					<div class="result_wrap">
+						<span class="txt_keyword _search_query" (click)="searchTap()">{{searchText}}</span>
+						<span class="txt_result"> (으)로 검색한 결과입니다.</span>
+					</div>
+				</div>
+			</div>
+			<div class="btn_area">
+                <!--<button ion-button icon-only clear (click)="goMap()" style="padding: 4px;">-->
+                    <ion-icon style="width:4.7rem;vertical-align:middle" (click)="goMap()">
+                        <img src="assets/img/search_map.png"/>
+                    </ion-icon>
+                    <ion-icon style="width:4.7rem;vertical-align:middle" (click)="goOptions()">
+                        <img src="assets/img/search_option.png"/>
+                    </ion-icon>
+                <!--</button>-->
+                <!--<button ion-button icon-only outline round small  color="map"  (click)="goOptions()" style="padding: 4px;">
+                    <ion-icon name="options"></ion-icon>
+                </button>-->
+			</div>
+		</div>
+        <!--<div class="sorting_filter">-->
+				<!-- [D] 선택된 option의 텍스트를 label에 넣어주세요 -->
+				<!--<label for="sorting">이용후기 많은 순<ion-icon name="ios-arrow-down" style="vertical-align: middle;margin-left:1.2rem"></ion-icon></label>-->
+                <!-- ios-arrow-down -->
+				<!--<select name="" id="sorting" data-search-param="order">
+					<option value="BEST_DESC" selected="">베스트 공간 순</option>
+					<option value="PRC_ASC">가격 낮은 순</option>
+					<option value="PRC_DESC">가격 높은 순</option>
+					<option value="CMNT_DESC">이용후기 많은 순</option>
+				</select>-->
+			<!--</div>-->
+            <!--<ion-card *virtualItem="let item" style="box-shadow:none;margin:0;padding:8px;width:100%;" (click)="openItem(item)">-->
+            <ion-card *ngFor="let item of filterData" style="position:relative;box-shadow:none;margin:0;width:100%;margin-bottom: 7px;border-bottom: 1px solid #ebebeb;" (click)="openItem(item)">
+                    <img *ngIf="item.image" class="thumbnail"  src="http://sumcrimage.cafe24.com{{item.image}}" style="width:100%;object-fit:cover;    display: block;"> 
+                    <div style="position: absolute;bottom: 5%;left: 5%;">
+                        <ion-card-title style="padding: 0;font-size: 1.2rem;font-weight: bold; color:#fff;">
+                            {{item.title}}
+                        </ion-card-title>
+                        <span class="area_text" style="color:#fff">{{item.area}}  <span class="info_text" style="color:#fff">{{item.hashtag}}</span></span>
+                    </div>
+                
+            </ion-card>
+  
 </ion-content>

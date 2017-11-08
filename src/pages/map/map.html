@@ -1,12 +1,103 @@
-<ion-header>
+<ion-header>  
+  <ion-toolbar   style="background: #3b4254;">
+            <ion-title> 
+              <span  class="col2" col-2 style="font-size: 1.9rem;float:left;text-align: center;line-height: 4.6rem;" (click)="closeSearch()">닫기</span>
+                <div col-10 class="col10 searchbar-input-container" style="background: inherit;width:100%; padding-right:3%;float:right">
+                    <!--<ion-icon name="ios-close-circle" class="searchClear" (click)="searchClear()"></ion-icon>-->
+                    <ion-input #searchInput class="search-bar-input"  type="search"  placeholder="검색어를 입력해주세요." readonly (click)="goSearch()"></ion-input>
+                </div>
+            </ion-title>
 
-  <ion-navbar>
-    <ion-title>{{ 'MAP_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    </ion-toolbar>
+    <!--<ion-toolbar style="background: #3b4254;">
+           <ion-title> {{title}}</ion-title>
+            <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only color="white" (click)="close()">
+                    <ion-icon name="close"></ion-icon>
+                </button>
 
+            </ion-buttons>
+    </ion-toolbar>-->
+    <scroll-tabs #scrollTab [tabs]="tabs" (onSelectedTab)="tabChange($event)"></scroll-tabs>
+    <!--<ion-scroll #headerTab scrollX="true" style="width:100vw;height:4.2rem;min-width:100%" >
+    <ion-segment [(ngModel)]="menuId" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="0">
+            전체
+        </ion-segment-button>
+        <ion-segment-button *ngFor="let category of categorys" [value]="category.menuId">
+            {{category.menuName}}
+        </ion-segment-button>
+    </ion-segment>
+    </ion-scroll>-->
 </ion-header>
 
 
 <ion-content>
-  <div #map id="map"></div>
+  <div class="map_wrap">
+      <div #map id="map" style="width:100%;height:100%"></div>
+    <!-- 지도타입 컨트롤 div 입니다 -->
+      <div class="custom_typecontrol radius_border">
+          <span id="btnRoadmap" class="selected_btn" (click)="setMapType('roadmap')">지도</span>
+          <span id="btnSkyview" class="btn" (click)="setMapType('skyview')">스카이뷰</span>
+      </div>
+      <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+      <div class="custom_zoomcontrol radius_border"> 
+          <span (click)="zoomIn()"><img src="assets/img/ico_plus.png" alt="확대"></span>  
+          <span  (click)="zoomOut()"><img src="assets/img/ico_minus.png" alt="축소"></span>
+      </div>
+      <div class="my_location">
+          <button ion-button icon-only color="white" style="width: 30px;height: 30px;" (click)="goMyLocation()">
+              <ion-icon name="ios-locate-outline" style="color:#6d6d6d;"></ion-icon>
+          </button>
+      </div>
+  </div>
+  <div class="map-bottom" *ngIf="!bottomHidden" [@fadeInOut]>
+        <div style="width:100%; height: 4.8rem;" >
+            <span class="b-title">{{bTitle}} <span class="b-desc">반경750m</span> 주변</span>
+            <span class="b-btn" *ngIf="pItems.length > 0" (click)="goList()">전체 보기 ></span>
+        </div>
+        <div style="width:100%; text-align:center;">
+            <span class="n-title" *ngIf="pItems.length == 0">등록된 업체가 없습니다.</span>
+            <div style="width: 100%;"  *ngIf="pItems.length > 0">
+                <div style="margin-bottom: 17px;display: inline-block;width: 100%;">
+                    <ion-scroll id="bannerScroll" scroll-bar-x="false" scroll-bar-y="false"  scrollX scrollY="false" style="height:18rem;background: #fff;">
+                        <ng-template ngFor let-item [ngForOf]="pItems">
+                            <div class="scroll-item" *ngIf="item.logo_url">
+                                <div  style="position:relative;" (click)="openItem(item)">
+                                    <img *ngIf="item.logo_url"  src="http://sumcrimage.cafe24.com{{item.logo_url}}" style="width:31.2rem;border-radius: 6px;object-fit:cover;"> 
+                                    <div style="position: absolute;top: 68%;left: 5%;">
+                                        <ion-card-title style="padding: 0;font-size: 1.2rem;font-weight: bold; color:#fff;">
+                                            {{item.brandName}}
+                                        </ion-card-title>
+                                        <span class="area_text" style="font-size:1rem;color:#fff">{{item.areaName}}  <span class="info_text" style="font-size:1rem;color:#fff">{{item.hashtag}}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ion-scroll>
+                    </div>
+                <!--<ion-scroll id="bannerScroll" scroll-bar-x="false" scroll-bar-y="false"  scrollX scrollY="false" style="min-height: 26.2rem;">
+                    <ng-template ngFor let-item [ngForOf]="pItems">
+                        <div class="scroll-item" *ngIf="item.logo_url">
+                            <div  (click)="openItem(item)" style="border:1px solid #ededed;">
+                                <img *ngIf="item.logo_url"  src="http://sumcrimage.cafe24.com{{item.logo_url}}" style="width:28.7rem;border-radius: 6px;"> 
+                                <div style="position:relative">
+                                    <ion-card-title style="padding: 0;margin: 24px 0 0 13px;font-size: 1rem;font-weight: bold;text-align:left;">
+                                        {{item.brandName}}
+                                    </ion-card-title>
+                                    <span class="area_text" style="font-size:1rem">{{item.areaName}} <span class="info_text" style="font-size:1rem;color:#fff">{{item.hashtag}}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ion-scroll>-->
+            </div>
+        </div>
+    </div>
+    <ion-fab right bottom style="z-index:3" *ngIf="bottomHidden">
+        <!--<img src="assets/img/float.png" width="50%" style="float:right;"/>-->
+        <button ion-icon clear [disabled]="trackDisabled"  style="background:transparent;">
+                <img src="assets/img/float.png" width="50%" style="float:right;"  (click)="goTrackerList()"/>
+        </button>
+    </ion-fab>
 </ion-content>

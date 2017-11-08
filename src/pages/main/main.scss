@@ -1,0 +1,309 @@
+page-main {
+    .scroll-content {
+        background: #fff !important;
+    }
+    .hide-header {
+        transition: top 0.25s ease;
+        // top: -56px;
+        display: none;
+    }
+    .show-header {
+        transition: top 0.25s ease;
+        top:0px;
+        display: block;
+    }
+    // ion-slides {
+    //     max-height: 60%;
+    // }
+    #bannerScroll {
+        ::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            display: none !important;
+        }
+    }
+    
+    .search-input-container {
+        border-bottom: 2px solid #fff;
+        background: inherit;
+        width: 83%;
+        position: absolute;
+        top: 50%;
+        left: 53%;
+        transform: translate(-50%, -59%);
+    }
+
+    .search-input {
+        // padding: 6px 8px;
+        height: auto;
+        border-radius: 2px;
+        font-size: 1.6rem;
+        font-weight: 400;
+        background-color: transparent;
+        background-position: 8px center;
+        width:90%;
+         -webkit-box-shadow: none;
+        box-shadow: none;
+        float:left;
+        padding:0;
+        color: #fff;
+    }
+    .content-md .search-input {
+         line-height: 3rem;
+    }
+     input {
+         border-width: 0px !important;
+        border-style: none !important;
+     }
+     .search-bar-input {
+         .text-input {
+             margin:9px 8px;
+         }
+     }
+     .search-input {
+         .text-input {
+            margin:0;
+        }
+     }
+     
+
+     .ionSearch {
+        vertical-align: middle;
+        text-align: left;
+         background-repeat: no-repeat;
+         background-size: 20px;
+         font-size: 27px;
+         font-weight: bold;
+         float: right;
+        //  margin-left: 9px;
+        padding-bottom: 7px;
+        // width: 25px;
+        // height: 25px;
+        z-index: 999;
+        color:color($colors, white);
+     }
+
+    .banner-content {
+        display: block;
+        white-space: nowrap;
+        font-size: 0;
+        overflow: auto;
+        background: #fff;
+        height: 100%;
+    }
+    .banner-content .scroll-content {
+        padding: 0 17px 52px;
+    }
+
+    .area_text {
+        text-align: left;
+        color: color($colors, dark);
+        padding: 0;
+        margin: 2px 0;
+        font-size: 1.3rem;
+        // font-weight: bold;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    .info_text {
+        color: color($colors, subtitle);
+        padding: 0;
+        margin: 0;
+        // font-size: 1rem;
+
+        font-weight: normal;
+    }
+
+    .background-card {
+        position: relative;
+        text-align: center;
+        margin:0;
+        // margin-bottom: 4px;
+        width: 100%;
+    }
+    .background-card-title {
+        position: absolute;
+        bottom: 20%;
+        font-size: 0.8rem;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+    }
+    .background-card-subtitle {
+
+        font-size: 1.6em;
+        position: relative;
+        font-weight: 400;
+        // left: 0;
+        // line-height: 10px;
+        // top: 36%;
+        width: 100%;
+        height: 100%;
+        // text-align: left;
+        color: #fff;
+        // padding-left: 12px;
+
+        pre {
+            font-family: "Roboto", "Helvetica Neue", sans-serif !important;
+        }
+    }
+
+    .left_arrow {
+            background: transparent;
+            position: absolute;
+            top: 46%;
+            z-index: 9999;
+            padding: 0;
+            color: white;
+    }
+
+    .right_arrow {
+            background: transparent;
+            position: absolute;
+            top: 46%;
+            right: 0;
+            z-index: 9999;
+            padding: 0;
+            color: white;
+    }
+     .category_div {
+          z-index: 9999;
+        position: absolute;
+        bottom: 0;
+        left:  0;
+        text-align: left;
+        padding: 3.2rem 2rem;
+    }
+    .category_icon {
+        z-index: 9999;
+        // position: absolute;
+        // top: auto;
+        // left:  auto;
+        height:18px;
+        color: #fff;
+        padding:2%;
+        border-radius: 5px;
+        margin:0 0.2rem 0 0;
+    }
+    
+    .toolbar-title {
+        color:#fff !important;
+        padding: 0px 5% !important;
+        font-size: 2.9rem !important;
+    }
+
+    .header {
+        .toolbar-title {
+            padding: 0px 0 0 4% !important;
+        }
+    }
+    .bar_list {
+        list-style: none;
+        padding-top: 17px;
+        display: inline-block;
+    }
+    .main .toolbar-ios {
+        top:20px !important;
+    }
+
+    .toolbar-content-ios >  ion-title {
+        padding-top: 0 !important;
+    }
+
+        ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-content {
+            padding-left:1.5rem;
+        }
+        .scroll-item {
+            display: inline-block;
+            background: #fff;
+            // height:90%;
+            // width:93%;
+            padding: 1.3rem  0.5rem 0 0;
+        }
+    }
+
+    .list-title {
+        margin-left: 1.8rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+     #myPosition{
+         position: relative;
+         padding-bottom: 18px;
+     }
+        #myPosition:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 80%;
+        margin-top: -5px;
+        width: 1px;
+        background-color: #ccc;
+    }
+     #subway{
+         position: relative;
+     }
+        #subway:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 80%;
+        margin-top: -5px;
+        width: 1px;
+        background-color: #ccc;
+    }
+
+    .col4 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 33.33333%;
+        -ms-flex: 0 0 33.33333%;
+        flex: 0 0 33.33333%;
+        width: 33.33333%;
+        max-width: 33.33333%;
+    }
+
+    .thumbnail {
+        // width:31.2rem;
+        // border-radius: 6px;
+        // object-fit:cover;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top:0;
+            right: 0;
+            bottom: 0;
+            left : 0;
+            border-radius: 6px;
+            background-image:  linear-gradient(to top, #000000, transparent);
+            opacity: .6;
+        }
+    }
+
+    .toolbar-title-ios .logo_img {
+        margin-top:15px !important;
+    }
+
+    .toolbar-title-md .searchClear {
+        line-height : 3.6rem !important;
+    }
+
+    .content-ios .ionSearch {
+        margin-top:10px;
+    }
+
+    ion-scroll.scroll-x .scroll-content {
+        overflow-y: hidden !important;
+    }
+
+    .bar-buttons-ios {
+        padding-right: 5% !important;
+    }
+}

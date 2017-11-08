@@ -1,0 +1,23 @@
+page-rules {
+    ion-content {
+        font-size:10px;
+        
+    }
+    .scroll-content {
+        background: #fff;
+        padding:10px;
+    }
+    .back-button {
+        color: #fff !important;
+        z-index: 9999;
+    }
+    .detail-title {
+        color:#fff;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+}

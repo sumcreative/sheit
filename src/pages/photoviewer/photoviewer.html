@@ -1,0 +1,10 @@
+<ion-content  style="background:rgba(0,0,0,0.5)">
+    <ion-slides style="height:100%" [initialSlide]='index' loop='false' zoom="true" pager="true" palallax="true">
+            <ion-slide *ngFor="let photo of photos">
+                <img  src="http://sumcrimage.cafe24.com{{photo.photoPath}}" style="width:100%;height:auto;"/>
+            </ion-slide>
+    </ion-slides>
+    <div id="close_button_right" style="position:absolute;top:5%;right:0;z-index:9999;">
+                <img src="assets/img/sideclose.png" style="width:25px" (click)="closePhoto()"/>
+    </div>
+</ion-content>

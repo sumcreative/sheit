@@ -1,0 +1,273 @@
+<ion-header>  
+    <!--<ion-toolbar style="background: #3b4254;padding:0;" [hidden]="searchHidden">
+        <ion-input #searchInput class="search-input"  type="search"  [(ngModel)]="searchQuery"   (keyup.enter)="goSearch()" placeholder="검색어를 입력해주세요."></ion-input>
+        <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only  color="white" (click)="goSearch()">
+                    <ion-icon name="ios-search"></ion-icon>
+                </button>
+                <button   ion-button icon-only color="white" (click)="closeSearch()">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>-->
+    <ion-navbar #nav style="background: #3b4254;display:;">
+        <ion-title  style="color:#fff;" *ngIf="brand">{{brand.brandName}}</ion-title>
+         <ion-buttons style="padding-right: 8px;" end>
+                <button   ion-button icon-only  color="white" (click)="goKakao()">
+                    <img src="assets/img/plus.png" width="30px"/>
+                </button>
+        </ion-buttons>
+        <!--<ion-title> 1</ion-title>-->
+    </ion-navbar>
+    <ion-segment #segment [(ngModel)]="type" mode="md" style="position:absolute;background:#fff;display:;">
+        <!--<ion-segment-button value="review">
+            이용자평점
+        </ion-segment-button>-->
+        <ion-segment-button value="time" (click)="changeSegment('time')">
+            이용시간
+        </ion-segment-button>
+        <ion-segment-button value="price" (click)="changeSegment('price')">
+            서비스가격
+        </ion-segment-button>
+         <ion-segment-button value="photo" (click)="changeSegment('photo')">
+            갤러리
+        </ion-segment-button>
+        <ion-segment-button value="navi" (click)="changeSegment('navi')">
+            오시는길
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+<ion-content (ionScroll)="scrollEvent($event)" (ionScrollEnd)="scrollEnd($event)">
+    <button ion-button clear icon-only  style="position:absolute;top:7px; left:0px;z-index:9999;" (click)="goBack();">
+        <ion-icon name="ios-arrow-back" color="white"></ion-icon>
+    </button>
+    <button   ion-button clear icon-only  color="white"style="position:absolute;top:7px; right:12px;z-index:9999;"  (click)="goKakao()">
+        <img src="assets/img/plus.png" width="30px"/>
+        <!--<ion-icon name="ios-at"></ion-icon>-->
+    </button>
+        <!--<ion-navbar style="background: transparent;position: absolute;top: 0;z-index: 9999;">
+    </ion-navbar>-->
+    <ng-template [ngIf]="brand">
+    <div #thumb  class="thumbnail">
+        <img [src]="brand.imageUrl" style="width:100%;height:100%;display:block;object-fit:cover;"/>
+        <div style="position:absolute; bottom:0;padding:15px" >
+            <h3  class="brandName" style="margin:0;color:#fff;" *ngIf="brand">{{brand.brandName}}</h3>
+            <div class="category_div" style="width:100%;margin-top:8px;">
+                <ng-template ngFor  let-tag [ngForOf]="hashtag"  let-i="index">
+                    <ion-badge class="badge" color="subtitle" (click)="goHashtag(tag)">{{tag}}</ion-badge>
+                        <!--<button class="category_icon" outline round ion-button color="subtitle" (click)="goHashtag(tag)">{{tag}}</button>-->
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <ion-segment #midSegment [(ngModel)]="type"   mode="md">
+        <!--<ion-segment-button value="review">
+            이용자평점
+        </ion-segment-button>-->
+        <ion-segment-button value="time" (click)="changeSegment('time')">
+            이용시간
+        </ion-segment-button>
+        <ion-segment-button value="price" (click)="changeSegment('price')">
+            서비스가격
+        </ion-segment-button>
+         <ion-segment-button value="photo" (click)="changeSegment('photo')">
+            갤러리
+        </ion-segment-button>
+        <ion-segment-button value="navi" (click)="changeSegment('navi')">
+            오시는길
+        </ion-segment-button>
+    </ion-segment>
+    <!--<ion-content>-->
+    <!--<div class="info" *ngIf="brand">
+    {{brand.introduction}}
+    </div>-->
+    <!--<div #reviewContainer class="text_box" style="margin-top:15px;">
+        <span class="h_intro">이용자 평점</span>
+        <div class="bottom-bar"></div>
+        <div style="height:50px"></div>
+    </div>-->
+    <div #timeContainer class="text_box">
+        <span class="h_intro">이용 시간</span>
+        <div class="bottom-bar"></div>
+        <ion-grid style="padding: 10px 0;">
+            <ion-row style="border-bottom:1px solid #ededed">
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">월</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.monHours}}</span>
+                </ion-col>
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">토</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.saturHours}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row style="border-bottom:1px solid #ededed">
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">화</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.tuesHours}}</span>
+                </ion-col>
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">일</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.sunHours}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row style="border-bottom:1px solid #ededed">
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">수</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.wednesHours}}</span>
+                </ion-col>
+                <ion-col style="padding:8px 0;"></ion-col>
+            </ion-row>
+            <ion-row style="border-bottom:1px solid #ededed">
+                <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">목</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.thursHours}}</span>
+                </ion-col>
+                <ion-col style="padding:8px 0;"></ion-col>
+            </ion-row>
+            <ion-row style="border-bottom:1px solid #ededed">
+               <ion-col style="padding:8px 0;">
+                    <span class="week" style="float:left;">금</span>
+                    <span class="week" style="font-weight:300;float:right;padding-right:55px">{{brand.friHours}}</span>
+                </ion-col>
+                <ion-col style="padding:8px 0;"></ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div #priceContainer class="text_box">
+        <span class="h_intro">서비스 가격</span>
+        <div class="bottom-bar"></div>
+        <ol class="info_list" style="margin: 10px 0">
+                <ng-template ngFor  let-facility [ngForOf]="brand.facility"  let-i="index">
+                    <li style="padding-left: 26px;">
+                        <strong class="tit">{{i+1}}</strong>
+                        <span class="data">{{facility.option_name}} <span style="float:right;">{{facility.option_price}}</span></span>
+                        
+                    </li>
+                </ng-template>
+        </ol>
+    </div>
+    <div #photoContainer class="text_box">
+        <span class="h_intro">갤러리</span>
+        <div class="bottom-bar"></div>
+        <div class="info_list" style="width:100%;padding: 18px 0 0 0;position:relative;">
+                <ng-template [ngIf]="brandPhoto.length > 0 && brandPhoto.length < 3">
+                    <img src="http://sumcrimage.cafe24.com/{{brandPhoto[0].photoPath}}" style="width:100%;height:26rem;" (click)="openPhoto(0)"/>
+                    <div *ngIf="brandPhoto.length == 2" style="position:absolute;bottom:1rem;right:1rem;" (click)="openPhoto(1)">
+                        <h1 style="color:#fff;">+1</h1>
+                    </div>
+                </ng-template>
+                <!--<ng-template [ngIf]="brandPhoto.length == 3">
+                    <ion-row style="height:17.5rem">
+                        <ion-col col-8 style="height:100%;padding:0 2px 0 0px;">
+                            <img class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[0].photoPath}}">
+                        </ion-col>
+                        <ion-col col-4 style="height:100%;padding:0">
+                            <div style="height:50%;padding: 0 0 2px 2px;">
+                                <img class="photo"src="http://sumcrimage.cafe24.com/{{brandPhoto[1].photoPath}}">
+                            </div>
+                            <div style="height:50%;padding: 2px 0 0 2px;">
+                                <img class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[2].photoPath}}">
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ng-template>-->
+                <ng-template [ngIf]="brandPhoto.length > 2">
+                    <ion-row style="height:17.5rem">
+                        <ion-col col-8 style="height:100%;padding:0 1px 0 0px;" (click)="openPhoto(0)">
+                            <img class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[0].photoPath}}">
+                        </ion-col>
+                        <ion-col col-4 style="height:100%;padding:0">
+                            <div style="height:50%;padding: 0 0 2px 2px;"  (click)="openPhoto(1)">
+                                <img class="photo"src="http://sumcrimage.cafe24.com/{{brandPhoto[1].photoPath}}">
+                            </div>
+                            <div style="height:50%;padding: 2px 0 0 2px;position:relative;"  (click)="openPhoto(2)">
+                                <img *ngIf="brandPhoto.length < 6" class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[2].photoPath}}" style="opacity:0.5">
+                                <div *ngIf="brandPhoto.length < 6"style="position:absolute;top:0;left:0;width:100%;height:100%;display:table">
+                                    <h1 style="margin: auto;display: table-cell;vertical-align: middle;text-align: center;color:#fff;">+{{brandPhoto.length - 2}}</h1>
+                                </div>
+                                <img *ngIf="brandPhoto.length >= 6" class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[2].photoPath}}" >
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ng-template [ngIf]="brandPhoto.length > 5">
+                        <ion-row style="height:8.7rem">
+                            <ion-col col-4 style="height:100%;padding:3px 2px 0 0"  (click)="openPhoto(3)">
+                                <img class="photo"src="http://sumcrimage.cafe24.com/{{brandPhoto[3].photoPath}}">
+                            </ion-col>
+                            <ion-col col-4 style="height:100%;padding:3px 1px 0px 1px;"  (click)="openPhoto(4)">
+                                <img class="photo"src="http://sumcrimage.cafe24.com/{{brandPhoto[4].photoPath}}">
+                            </ion-col>
+                            <ion-col col-4 style="height:100%;padding:3px 0px 0 1px;"  (click)="openPhoto(5)">
+                                <img class="photo" src="http://sumcrimage.cafe24.com/{{brandPhoto[5].photoPath}}" style="opacity:0.5">
+                                <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:table">
+                                    <h1 style="margin: auto;display: table-cell;vertical-align: middle;text-align: center;color:#fff;">+{{brandPhoto.length - 5}}</h1>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ng-template>
+                </ng-template>
+                
+        </div>
+    </div>
+    <div #naviContainer class="host_profile">
+            <span class="h_intro">오시는길</span>
+            <div class="bottom-bar"></div>
+            <div class="map_wrap">
+                <div #map id="map" style="width:100%;height:300px;"></div>
+                <div style="position:absolute;bottom: 0;z-index:9999;width:100%;">
+                    <button ion-button full color="light" (click)="goRoadview()" style="margin: 0;background: rgba(255,255,255, 0.7);">로드뷰</button>
+                </div>
+            </div>
+    </div>
+  <footer style="padding-top:8px;padding-bottom:4px;background:#ededed">
+        <div style=" font-size:10px; margin:0 8px;border-bottom:1px solid #f0f0f0">
+            <p style="margin:0 0 8px 0; line-height:13px;text-align:center">
+                <span style="font-weight:bold;font-size:1.5rem;">쉬잇</span><br>
+                <span (click)="rule(0)">이용약관 | </span><span (click)="rule(1)">개인정보 처리방침 | </span><span (click)="rule(2)">사업자 정보확인</span><br>
+                <span>(주)숨크리에이티브 사업자 및 통신판매업자 정보</span>
+            </p>
+        </div>
+        <div style=" font-size:10px; padding:8px;">
+            <p style="line-height:13px; margin: 0;text-align:center">
+            주식회사 숨크리에이티브 | 대표: 채경민 <br>
+            사업자등록번호: 484-88-00453 | 통신판매 신고번호: 2016-서울금천-1048<br>
+            주소: 서울특별시 금천구 가산디지털1로 149 | 070-7703-0859<br>
+            sumcreative@naver.com
+            <!--<br>-->
+            <!--Copyright ©발그레-주식회사 숨크리에이티브 2016. All Rights Reserved.-->
+            </p>
+        </div>
+    </footer>
+    <!--</ion-content>-->
+ </ng-template>
+</ion-content>
+<ion-footer>
+    <div class="col-xs-12 main_color" id="footer_buy">
+        <!--<div  id="buy_btn" style="margin: 0 15px; float: right;" (click)="goNavi(1)">-->
+           
+        <!--</div>-->
+        <div  id="buy_btn" style="float: right;">
+            <!--<button ion-button clear icon-left style="float:right;" color="white">
+                <ion-icon><img src="assets/img/call.png" width="20px"/></ion-icon>
+                전화걸기
+            </button>
+            <button ion-button clear icon-left  style="float:right"  color="white" id="smsBtn">
+                <ion-icon><img src="assets/img/sms.png" width="20px"/></ion-icon>
+                예약문자
+            </button>-->
+            <p class="main_color"style="font-size:14px;float:right; border-left:1px solid #ffffff; padding-left:15px;padding-right:15px;margin:15px 0"  (click)="call()" >전화걸기</p>
+            <!--<img style="float:right; " src="assets/img/call.png" width="20px"/>-->
+            <p class="main_color"style="font-size:14px;float:right; padding-right:15px;margin:15px 0" (click)="sendSms()">예약문자</p>
+            <!--<img style="float:right; " src="assets/img/sms.png"  width="20px"/>-->
+            
+        </div>
+        <div style="float:left;margin:15px" (click)="shareBrand()">
+            <img src="assets/img/send_btn2.png" style="float:left;" width="20px"/>
+        </div>
+        <div style="float: left;margin:15px" (click)="addWishlist()">
+            <img src="assets/img/like_btn2.png" style="float:left;text-align: center;" width="20px"/>
+        </div>
+
+    </div>
+</ion-footer>

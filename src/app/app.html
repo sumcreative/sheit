@@ -1,0 +1,96 @@
+<ion-menu [content]="content" (ionOpen)="menuOpen()" side="right">
+    <ion-header>
+        <ion-toolbar>
+            <ng-template [ngIf]="userApi.token">
+                <div id="MyPhoto">
+                    <div id="Name_Email" *ngIf="userApi.user">
+                        <span class="myName" >{{userApi.user.nickname}}</span><br />{{userApi.user.email}}
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngIf]="!userApi.token">
+                <div id="Name_Login">
+                        <span class="myName" >로그인 해 주세요.</span>
+                    </div>
+            </ng-template>
+            <div id="close_button_right">
+                <ion-icon class="side-close-icon" name="ios-close" menuToggle></ion-icon>
+                <!--<img src="assets/img/sideclose.png" menuToggle/>-->
+            </div>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+    <div class="main_container">
+        <!--<div class="video_box">
+            <span class="qna_title">성형 QNA</span>
+            <ion-icon class="qna_icon" name="ios-arrow-forward"></ion-icon>
+        </div>-->
+        <div class="middle_main_box">
+            <ion-list no-lines>
+                <ion-item style="font-size: 1.3rem;font-weight: 400;" (click)="goHome(0)">
+                    <ion-icon  item-start><img src="assets/img/side1.png" class="side-icon" /></ion-icon>
+                    홈으로 가기
+                </ion-item>
+                <ion-item style="font-size: 1.3rem;font-weight: 400;" (click)="goHome(1)">
+                    <ion-icon  item-start><img src="assets/img/side2.png" class="side-icon" /></ion-icon>
+                    찜리스트
+                </ion-item>
+                <ion-item style="font-size: 1.3rem;font-weight: 400;border-bottom:1px solid #ccc" (click)="goHome(2)">
+                    <ion-icon  item-start><img src="assets/img/side3.png" class="side-icon" /></ion-icon>
+                    이벤트
+                </ion-item>
+                <ion-item style="font-size: 1.3rem;font-weight: 400;background:#f6f6f6" (click)="goHome(3)">
+                    <ion-icon  item-start><img src="assets/img/side4.png" class="side-icon" /></ion-icon>
+                    1:1문의/자주묻는 질문
+                </ion-item>
+                <ion-item style="font-size: 1.3rem;font-weight: 400;background:#f6f6f6 " (click)="goHome(4)">
+                    <ion-icon  item-start><img src="assets/img/side5.png" class="side-icon" /></ion-icon>
+                    알림 켜기
+                </ion-item>
+
+                <!--<ion-item *ngFor="let row of categoryApi.sideCategory" style="font-size: 1.3rem;font-weight: 400;" (click)="openPage(row)">
+                    <ion-icon  item-start><img src="assets/img/login_icon.png" class="side-icon" /></ion-icon>
+                    {{row.menuName}}
+                </ion-item>-->
+            </ion-list>
+            <!--<ion-grid no-padding>
+                <ion-row *ngFor="let row of categoryApi.grdCtg">
+                  <ion-col col-4 *ngFor="let ctg of row" (click)="openPage(ctg)" style="padding:1px;">
+                      <ng-template [ngIf]="ctg">
+                          <div style="background-color:#ffffff;display:grid;">
+                                <img src="http://sumcrimage.cafe24.com{{ctg.menuIcon}}">
+                                <div id="F-column" *ngIf="ctg.menuName">{{ctg.menuName}}</div>
+                          </div>
+                      </ng-template>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>-->
+        </div>
+        <div class="bottom_part">
+            <ion-slides  #menuSlide *ngIf="categoryApi.sideBanner.length" style="height:auto" effect="fade" loop='true' autoplay="2000" (ionSlideWillChange)="menuSlideChange()" (ionSlideTap)="slideClick()">
+                    <ion-slide *ngFor="let banner of categoryApi.sideBanner">
+                        <img  src="http://sumcrimage.cafe24.com{{banner.thumbnail}}" style="width:100%;height:auto;"/>
+                    </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+    <div class="bottom_container" *ngIf="!userApi.token">
+        <img src="assets/img/kakao_account_login_btn_large_wide.png"  (click)="goLogin()"  style="display:block;"/>
+    </div>
+    <div class="bottom_container" *ngIf="userApi.token">
+        <div class="logout_notie">
+            <button class="col6" col-6 id="Notice"   (click)="goNotice()"  ion-button clear icon-start>
+                <img src="assets/img/notice_icon.png" class="notice_icon"/>
+                공지사항
+            </button>
+            <button col-6 id="LOGout"   (click)="logout()"  ion-button clear icon-start>
+                <img src="assets/img/login_icon.png" class="notice_icon"/>
+                로그아웃
+            </button>
+        </div>
+    </div>
+    </ion-content>
+  </ion-menu>
+<!--<img src="assets/img/side_test.png" width="100%" style="position: absolute;opacity: 0.3; z-index: 999;"/>-->
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
